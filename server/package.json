@@ -1,0 +1,19 @@
+{
+  "name": "peer-tutor-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend API for Online Peer Tutor Platform",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/db/seed.js",
+    "verify-db": "node src/scripts/verify-db.js",
+    "test:flow": "node src/scripts/test-api-flow.js",
+    "test:frontend-flow": "node src/scripts/test-frontend-integration.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

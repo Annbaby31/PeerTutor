@@ -1,0 +1,27 @@
+{
+  "name": "online-peer-tutor-platform",
+  "version": "1.0.0",
+  "description": "A lightweight, full-stack peer tutoring platform built for campus hackathons",
+  "private": true,
+  "scripts": {
+    "server": "npm --prefix server start",
+    "server:dev": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "seed": "npm --prefix server run seed",
+    "verify-db": "npm --prefix server run verify-db",
+    "test:api": "npm --prefix server run test:flow",
+    "test:flow": "npm --prefix server run test:frontend-flow",
+    "test": "npm run verify-db && npm run test:api && npm run test:flow && npm run build"
+  },
+  "keywords": [
+    "peer-tutoring",
+    "hackathon",
+    "college",
+    "express",
+    "react",
+    "sqlite"
+  ],
+  "author": "",
+  "license": "MIT"
+}
