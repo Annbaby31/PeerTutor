@@ -190,21 +190,3 @@ Visit **`http://localhost:3000`** in your browser.
 | `PATCH` | `/api/sessions/:id/status` | Update booking status (`ACCEPTED`, `REJECTED`, `CANCELLED`) |
 
 ---
-
-## 🎓 College Viva & Hackathon Technical Q&A
-
-### Q1: Why did you choose SQLite over MongoDB or PostgreSQL?
-> **Answer**: In a campus hackathon setting, external database servers (Docker, MongoDB service, or PostgreSQL daemons) introduce environment setup friction, cross-platform port collisions, and live demo crash risks. Node 24 includes **native `node:sqlite`**, providing zero-dependency, local file persistence with ACID compliance, relational integrity (foreign keys and junction tables), and instant deterministic seeding.
-
-### Q2: How did you implement the many-to-many relationship between Tutors and Subjects?
-> **Answer**: We designed a classic relational junction table `tutor_subjects` with a composite primary key `(tutor_profile_id, subject_id)` and cascading foreign keys. When querying tutors, we perform a `JOIN` and aggregate subjects into an array. When a tutor updates their profile, the junction table rows are synchronized within a transaction.
-
-### Q3: How is authorization and the session state machine handled?
-> **Answer**: In `sessionController.js`, status transitions are strictly validated:
-> 1. Initial state is always `PENDING`.
-> 2. Only the requested tutor (`actorId === session.tutor_id`) can transition the status to `ACCEPTED` or `REJECTED`.
-> 3. Only the student (or tutor) can cancel a session (`CANCELLED`).
-> 4. Terminal states (`REJECTED`, `CANCELLED`) cannot be modified further.
-
-### Q4: Why use a Demo Persona Switcher instead of traditional JWT authentication?
-> **Answer**: For technical evaluations and hackathon presentations, judges have less than 5 minutes to test an app. Requiring judges to register two separate email accounts, verify emails, log out, and log in to test a two-sided student-tutor flow is error-prone. The Persona Switcher updates the active identity across the client in real-time while preserving genuine relational `user_id` foreign keys on the backend.
